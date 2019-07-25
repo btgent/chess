@@ -5,6 +5,6 @@ class Pawn: public Piece {
  public:
   bool possibleMove(Coord Pos);
 
-}
+};
 
 #endif
