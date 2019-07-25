@@ -9,6 +9,7 @@ class Piece {
   Colour colour;
  public:
   Piece(Coord pos, Type type, Colour colour);
+  ~Piece();
   bool virtual possibleMove(Coord Pos) = 0;
   void setPos(Coord Pos);
 };
