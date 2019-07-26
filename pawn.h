@@ -6,7 +6,7 @@ using std::vector;
 
 class Pawn: public Piece {
   vector<Coord> moves;
-  vector<Coord> attack;
+  vector<Coord> captures;
  public:
   Pawn(Coord pos, Colour colour);
   bool possibleMove(Coord Pos);
