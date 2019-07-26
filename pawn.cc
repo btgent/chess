@@ -22,7 +22,7 @@ Pawn::Pawn(Coord Pos, Colour colour): pos{Pos}, colour{colour} {
     Coord capture {Pos.row + 1, Pos.col -1};
     captures.push_back(capture);
   }
-  elseif (Pos.row !=8 ) {
+  else if (Pos.row !=8 ) {
     Coord capture1 {Pos.row + 1, Pos.col + 1};
     captures.push_back(capture1);
     Coord captures {Pos.row + 1, Pos,col - 1};
