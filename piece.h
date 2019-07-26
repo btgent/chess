@@ -1,7 +1,7 @@
 #ifndef _PIECE_H_
 #define _PIECE_H_
 #include "type.h"
-#incldue "move.h"
+#include "move.h"
 
 class Piece {
   Coord pos;
