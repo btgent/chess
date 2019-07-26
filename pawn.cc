@@ -1,4 +1,5 @@
 #include "pawn.h"
+#include <vector>
 
 Pawn::Pawn(Coord Pos, Colour colour): pos{Pos}, colour{colour} {
   type = Pawn;
