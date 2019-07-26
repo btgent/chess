@@ -10,7 +10,7 @@ class Pawn: public Piece {
  public:
   Pawn(Coord pos, Colour colour);
   bool possibleMove(Coord Pos);
-  bool possibleAttack(Coord Pos);
+  bool possibleCapture(Coord Pos);
 
 };
 
