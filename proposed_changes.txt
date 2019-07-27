@@ -1,3 +1,5 @@
+unique_ptr everything
+
 Move (change to PastMove): add member Type type;
 	Move(Coord, Coord, Type, Piece*=nullptr, Piece*=nullptr, Move*=nullptr)
 		(( to convert to unique_ptr, use unique_ptr<Move>&& ))
@@ -9,3 +11,15 @@ Piece: type is const
 	colour is const
 	eg. King(Coord, Colour)
 	vector<Coord> requiredOccupied(Coord)
+
+Also put Piece and children into a folder piece/
+Then everything up until Board should also be in a folder board/
+
+                    /
+         (Contains main, Controller, Scoreboard)
+         |-----------------------|---------|
+       board                  computer   display
+   (board stuff minus piece)
+        |
+      piece
+  (Piece stuff [note the #include will have ..])
