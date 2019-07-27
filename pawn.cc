@@ -27,6 +27,7 @@ bool Pawn::possibleMove(Coord Pos) {
       else if (pos.col == (Pos.col - 1) && Pos.row == (pos.row - 1)) return true;
       else return false;
   }
+  return false;
 }
 
 vector<Coord> Pawn::requiredEmpty(Coord Pos) {
