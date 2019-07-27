@@ -15,7 +15,6 @@ class Piece {
   Colour getColour();
   bool virtual possibleMove(Coord Pos) = 0;
   std::vetor<Coord> virtual requireEmpty(Coord Pos) = 0;
-  bool virtual possibleMove(Coord Pos) = 0;
   void setPos(Coord Pos);
 };
 
