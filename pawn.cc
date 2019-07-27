@@ -8,6 +8,7 @@ Pawn::Pawn(Coord Pos, Colour colour, Type type = Pawn): pos{Pos}, colour{colour}
 }
 
 bool Pawn::possibleMove(Coord Pos) {
+  if ((Pos.row == pos.row) && (Pos.col == pos.col)) return false;
   switch(colour) {
     case "White" :
       if (pos.col == Pos.col) {
