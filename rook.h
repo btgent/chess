@@ -1,5 +1,5 @@
-#ifndef __ROCK_H__
-#define __ROCK_H__
+#ifndef __ROOK_H__
+#define __ROOK_H__
 #include "piece.h"
 #include <vector>
 using std::vector;
