@@ -2,8 +2,8 @@
 #include <vector>
 using std::vector;
 
-Knight::Knight(Coord Pos, Colour colour): pos{Pos}, colour{colour} {
-  type = Pawn;
+Knight::Knight(Coord Pos, Colour colour, Type type = Knight): pos{Pos}, colour{colour}, type{type} {
+  type = Knight;
   firstMove = true;
 }
 
