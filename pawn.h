@@ -9,6 +9,7 @@ class Pawn: public Piece {
   vector<Coord> captures;
  public:
   Pawn(Coord pos, Colour colour);
+  Colour getColour();
   bool possibleMove(Coord Pos);
   bool possibleCapture(Coord Pos);
 
