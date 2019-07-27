@@ -4,9 +4,9 @@
 #include <vector>
 using std::vector;
 
-class Rock: public Piece {
+class Rook: public Piece {
  public:
-  Rock(Coord pos, Colour colour, Type type = Rock);
+  Rook(Coord pos, Colour colour, Type type = Rock);
   bool possibleMove(Coord Pos);
   vector<Coord> requiredEmpty(Coord Pos);
 };
