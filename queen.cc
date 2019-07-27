@@ -1,4 +1,3 @@
-    
 #include "queen.h"
 #include <vector>
 using std::vector;
