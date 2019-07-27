@@ -1,0 +1,11 @@
+Move (change to PastMove): add member Type type;
+	Move(Coord, Coord, Type, Piece*=nullptr, Piece*=nullptr, Move*=nullptr)
+		(( to convert to unique_ptr, use unique_ptr<Move>&& ))
+
+Coord: bool operator==(const &Coord)
+	bool operator!=(const &Coord)
+
+Piece: type is const
+	colour is const
+	eg. King(Coord, Colour)
+	vector<Coord> requiredOccupied(Coord)
