@@ -10,7 +10,7 @@ class Piece {
   Colour colour;
   bool firstMove;
  public:
-  Piece(Coord pos, Type type, Colour colour);
+  Piece(Coord pos, Colour colour, Type type);
   virtual ~Piece();
   Colour getColour();
   bool virtual possibleMove(Coord Pos) = 0;
