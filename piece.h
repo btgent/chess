@@ -8,8 +8,8 @@ class Piece {
   Coord pos;
   Type type;
   Colour colour;
-  bool firstMove;
  public:
+  bool firstMove;
   Piece(Coord pos, Colour colour, Type type);
   virtual ~Piece();
   Colour getColour();
