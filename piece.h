@@ -12,7 +12,7 @@ class Piece {
  public:
   Piece(Coord pos, Type type, Colour colour);
   virtual ~Piece();
-  Colour virtual getColour() = 0;
+  Colour getColour();
   bool virtual possibleMove(Coord Pos) = 0;
   std::vetor<Coord> virtual requireEmpty(Coord Pos) = 0;
   bool virtual possibleMove(Coord Pos) = 0;
