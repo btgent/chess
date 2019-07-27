@@ -1,6 +1,6 @@
 #include "piece.h"
 
-Piece::Piece(Coord pos, Type type, Colour colour): pos{pos}, type{type}, colour{colour}, firstMove(true) {}
+Piece::Piece(Coord pos, Type type, Colour colour): pos{pos}, colour{colour}, type{type}, firstMove(true) {}
 
 Piece::~Piece() {}
 
