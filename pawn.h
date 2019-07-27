@@ -9,7 +9,6 @@ class Pawn: public Piece {
   Pawn(Coord pos, Colour colour, Type type = Pawn);
   bool possibleMove(Coord Pos);
   vector<Coord> requiredEmpty(Coord Pos);
-  vector<Coord> requiredOccupied(Coord Pos);
 };
 
 #endif
