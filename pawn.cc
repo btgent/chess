@@ -30,8 +30,8 @@ bool Pawn::possibleMove(Coord Pos) {
 }
 
 vector<Coord> Pawn::requiredEmpty(Coord Pos) {
+  vector<Coord> v;
   if (possibleMove(Pos)) {
-    vector<Coord> v;
     switch(colour) {
       case "White" :
         if (pos.col == Pos.col) {
@@ -49,14 +49,18 @@ vector<Coord> Pawn::requiredEmpty(Coord Pos) {
           }
         }
     }
-  return v;
+    return v;
   }
+  v.push_back(pos);
+  return v;
 }
                  
 vector<Coord> Pawn::requiredOccupied(Coord Pos) {
+  vector<Coord> v;
   if (possibleMove(Pos)) {
-    vector<Coord> v;
     v.push_back(Pos);
     return v;
   }
+  v.push_bacK(pos);
+  return v;
 }
