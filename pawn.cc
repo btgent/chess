@@ -31,7 +31,11 @@ Pawn::Pawn(Coord Pos, Colour colour): pos{Pos}, colour{colour} {
   
 }
 
-Pawn::possibleMove(Coord Pos) {
+Colour Pawn::getColour() {
+  return Colour; 
+}
+
+bool Pawn::possibleMove(Coord Pos) {
   for (auto i : moves) {
     if (i.col == Pos.col && i.row == Pos.row) return true;
   }
