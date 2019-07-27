@@ -5,14 +5,11 @@
 using std::vector;
 
 class Pawn: public Piece {
-  vector<Coord> moves;
-  vector<Coord> captures;
  public:
-  Pawn(Coord pos, Colour colour);
-  Colour getColour();
+  Pawn(Coord pos, Colour colour, Type type = Pawn);
   bool possibleMove(Coord Pos);
-  bool possibleCapture(Coord Pos);
-
+  vector<Coord> requiredEmpty(Coord Pos);
+  vector<Coord> requiredOccupied(Coord Pos);
 };
 
 #endif
