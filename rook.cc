@@ -8,7 +8,8 @@ Rook::Rook(Coord Pos, Colour colour, Type type = Rock): pos{Pos}, colour{colour}
 }
 
 bool Rook::possibleMove(Coord Pos) {
-  if ((pos.row == Pos.row) || (pos.col == Pos.col)) return true;
+  if ((Pos.row == pos.row) && (Pos.col == pos.col)) return false;
+  else if ((pos.row == Pos.row) || (pos.col == Pos.col)) return true;
   else return false;
   }
 }
