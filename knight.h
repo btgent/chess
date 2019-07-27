@@ -7,11 +7,10 @@
 using std::vector;
 
 class Knight: public Piece {
-  vector<Coord> moves;
  public:
-  Knight(Coord pos, Colour colour);
+  Knight(Coord pos, Colour colour, Type type = Knight);
   bool possibleMove(Coord Pos);
-  bool possibleCapture(Coord Pos);
+  vector<Coord> requiredEmpty(Coord Pos);
 };
 
 #endif
