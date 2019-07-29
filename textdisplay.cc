@@ -45,6 +45,7 @@ void TextDisplay::drawBoard(const Board & b) {
         else if (temp->getType() == Pawn) {
           display[getPos().row][getPos().col] = 'P'; 
         }
+        break;
         
       case Black :
         if (temp->getType() == King) {
@@ -65,6 +66,7 @@ void TextDisplay::drawBoard(const Board & b) {
         else if (temp->getType() == Pawn) {
           display[getPos().row][getPos().col] = 'p'; 
         }
+        break;
     }
   }
   
