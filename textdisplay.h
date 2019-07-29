@@ -4,10 +4,9 @@
 #include <iostream>
 #include <vector>
 #include "board.h"
-using std::vector;
 
 class TextDisplay {
-  vector<vector<char>> display;
+  std::vector<std::vector<char>> display;
   const int boardSize; 
  public:
   TextDisplay(int n);
