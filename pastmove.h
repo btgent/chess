@@ -5,7 +5,6 @@
 #include "type.h"
 #include <memory>
 class Piece;
-class PastMove;
 
 struct PastMove {
 	Coord source;
