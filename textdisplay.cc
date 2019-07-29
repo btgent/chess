@@ -19,8 +19,11 @@ TextDisplay::TextDisplay(int n) : boardSize(n) {
 }
 
 void TextDisplay::drawBoard(const Board & b) {
-  for (auto temp : b) {
-    temp->getPos
+  for (auto temp : b.listPieces) {
+    Colour c = temp->getColour();
+    switch(c) {
+      case White :  if (W)
     
+    }
   }
 }
