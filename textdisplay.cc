@@ -1,7 +1,13 @@
 #include "textdisplay.h"
+#include <iostream>
+#include <vector>
 using vector::std;
 
-TextDisplay::TextDisplay(int n) : boardSize(n) {
+TextDisplay::TextDisplay(int n) : boardSize(n) {}
+
+TextDisplay::~TextDisplay() {}
+
+void TextDisplay::drawBoard(const Board & b) {
   for (int i = 0; i < n; i++) {
     vector<char> temp;
     for (int j = 0; j < n; j++) {
@@ -16,11 +22,7 @@ TextDisplay::TextDisplay(int n) : boardSize(n) {
     }
     display.push_back(temp);
   }
-}
-
-TextDisplay::~TextDisplay() {}
-
-void TextDisplay::drawBoard(const Board & b) {
+  
   for (auto temp : b.listPieces) {
     Colour c = temp->getColour();
     switch(c) {
@@ -64,5 +66,13 @@ void TextDisplay::drawBoard(const Board & b) {
           display[getPos().row-1][getPos().col-1] = 'p'; 
         }
     }
+  }
+  
+  for (int i = n - 1; i >= 0; i--) {
+    vector<std::char> temp = display[i];
+    for (auto c : temp) {
+      std::cout << c; 
+    }
+    std::cout << std::endl;
   }
 }
