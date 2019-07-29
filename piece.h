@@ -13,6 +13,8 @@ class Piece {
   Piece(Coord pos, Colour colour, Type type);
   virtual ~Piece();
   Colour getColour();
+  Type getType();
+  Coord getPos();
   bool virtual possibleMove(Coord Pos) = 0;
   std::vetor<Coord> virtual requireEmpty(Coord Pos) = 0;
   void setPos(Coord Pos);
