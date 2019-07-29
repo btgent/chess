@@ -14,6 +14,8 @@ struct PastMove {
 	std::unique_ptr<Piece> capture; //Store the piece that was captured (if any)
 	std::unique_ptr<Piece> oldPromo; //Store the pawn when it gets promoted
 	std::unique_ptr<PastMove> additional; //For castling
+	
+	PastMove(Coord source, Coord dest, Type type, bool check=false);
 };
 
 #endif
