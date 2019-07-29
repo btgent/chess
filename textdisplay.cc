@@ -1,0 +1,3 @@
+#include "textdisplay.h"
+
+using 
