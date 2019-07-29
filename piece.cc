@@ -1,22 +1,19 @@
 #include "piece.h"
 
-Piece::Piece(Coord pos, Colour colour, Type type): pos{pos}, colour{colour}, type{type}, firstMove{true} {}
+Piece::Piece(Coord pos, Type type, Colour colour, bool firstMove)
+  : pos{pos}, type{type}, colour{colour}, firstMove{firstMove} {}
 
 Piece::~Piece() {}
 
-Colour Piece::getColour() {
-  return colour;
-}
+Coord Piece::getPos() { return pos; }
 
-Type Piece::getType() {
-  return type; 
-}
+Type Piece::getType() { return type; }
 
-Coord Piece::getPos() {
-  return pos; 
-}
+Colour Piece::getColour() { return colour; }
 
-Piece::setPos(Coord Pos) {
-  pos.row = Pos.row;
-  pos.col = Pos.col;
+bool isFirstMove() { return firstMove; }
+
+Piece::setPos(Coord dest) {
+  pos.row = dest.row;
+  pos.col = dest.col;
 }
