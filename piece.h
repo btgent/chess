@@ -6,6 +6,7 @@
 #include <vector>
 
 class Piece {
+ protected:
   Coord pos;
   const Colour colour;
   const Type type;
