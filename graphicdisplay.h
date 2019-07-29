@@ -1,7 +1,8 @@
 #include "board.h"
 
 class GraphicDisplay {
-public:
+	const int boardSize; 
+  public:
 	GraphicDisplay();
 	void drawBoard(const Board & myb);
 	~GraphicDisplay();
