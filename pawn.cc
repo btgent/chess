@@ -18,6 +18,7 @@ bool Pawn::possibleMove(Coord Pos) {
       else if (pos.col == (Pos.col + 1) && Pos.row == (pos.row + 1)) return true;
       else if (pos.col == (Pos.col - 1) && Pos.row == (pos.row + 1)) return true;
       else return false;
+      break;
     
     case Black :
       if (pos.col == Pos.col) {
@@ -27,6 +28,7 @@ bool Pawn::possibleMove(Coord Pos) {
       else if (pos.col == (Pos.col + 1) && Pos.row == (pos.row - 1)) return true;
       else if (pos.col == (Pos.col - 1) && Pos.row == (pos.row - 1)) return true;
       else return false;
+      break;
   }
   return false;
 }
@@ -42,6 +44,7 @@ vector<Coord> Pawn::requiredEmpty(Coord Pos) {
             v.push_back(move);
           }
         }
+        break;
       
       case Black :
         if (pos.col == Pos.col) {
@@ -50,6 +53,7 @@ vector<Coord> Pawn::requiredEmpty(Coord Pos) {
             v.push_back(move);
           }
         }
+        break;
     }
     return v;
   }
