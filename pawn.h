@@ -7,12 +7,12 @@ class Pawn: public Piece {
  public:
   Pawn(Coord pos, Colour colour, bool firstMove=true);
   
-  bool possibleMove(Coord dest);
-  bool possibleMove(int r, int c);
-  std::vector<Coord> requiredEmpty(Coord dest);
-  std::vector<Coord> requiredEmpty(int r, int c);
-  std::vector<Coord> requiredOccupied(Coord dest);
-  std::vector<Coord> requiredOccupied(int r, int c);
+  bool possibleMove(Coord dest) const override;
+  bool possibleMove(int r, int c) const override;
+  std::vector<Coord> requiredEmpty(Coord dest) const override;
+  std::vector<Coord> requiredEmpty(int r, int c) const override;
+  std::vector<Coord> requiredOccupied(Coord dest) const override;
+  std::vector<Coord> requiredOccupied(int r, int c) const override;
 };
 
 #endif
