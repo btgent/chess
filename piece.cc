@@ -1,15 +1,15 @@
 #include "piece.h"
 
-Piece::Piece(Coord pos, Type type, Colour colour, bool firstMove)
-  : pos{pos}, type{type}, colour{colour}, firstMove{firstMove} {}
+Piece::Piece(Coord pos, Colour colour, Type type, bool firstMove)
+  : pos{pos}, colour{colour}, type{type}, firstMove{firstMove} {}
 
 Piece::~Piece() {}
 
 Coord Piece::getPos() { return pos; }
 
-Type Piece::getType() { return type; }
-
 Colour Piece::getColour() { return colour; }
+
+Type Piece::getType() { return type; }
 
 bool isFirstMove() { return firstMove; }
 
