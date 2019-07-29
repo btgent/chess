@@ -10,7 +10,7 @@ Pawn::Pawn(Coord Pos, Colour colour, Type type = Pawn): pos{Pos}, colour{colour}
 bool Pawn::possibleMove(Coord Pos) {
   if ((Pos.row == pos.row) && (Pos.col == pos.col)) return false;
   switch(colour) {
-    case "White" :
+    case White :
       if (pos.col == Pos.col) {
         if (firstMove && Pos.row == (pos.row + 2) return true;
         else if (Pos.row == (pos.row + 1) return true; 
@@ -19,7 +19,7 @@ bool Pawn::possibleMove(Coord Pos) {
       else if (pos.col == (Pos.col - 1) && Pos.row == (pos.row + 1)) return true;
       else return false;
     
-    case "Black" :
+    case Black :
       if (pos.col == Pos.col) {
         if (firstMove && Pos.row == (pos.row - 2) return true;
         else if (Pos.row == (pos.row - 1) return true; 
@@ -35,7 +35,7 @@ vector<Coord> Pawn::requiredEmpty(Coord Pos) {
   vector<Coord> v;
   if (possibleMove(Pos)) {
     switch(colour) {
-      case "White" :
+      case White :
         if (pos.col == Pos.col) {
           for (int i = pos.row; i <= Pos.row; i++) {
             Coord move{i, Pos.col};
@@ -43,7 +43,7 @@ vector<Coord> Pawn::requiredEmpty(Coord Pos) {
           }
         }
       
-      case "Black" :
+      case Black :
         if (pos.col == Pos.col) {
           for (int i = pos.row; i >= Pos.row; i--) {
             Coord move{i, Pos.col};
