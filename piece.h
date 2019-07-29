@@ -7,17 +7,17 @@
 
 class Piece {
   Coord pos;
-  const Type type;
   const Colour colour;
+  const Type type;
   bool firstMove;
   
  public:
-  Piece(Coord pos, Type type, Colour colour, bool firstMove=true);
+  Piece(Coord pos, Colour colour, Type type, bool firstMove=true);
   virtual ~Piece();
   
   Coord getPos();
-  Type getType();
   Colour getColour();
+  Type getType();
   bool isFirstMove();
   void setPos(Coord);
 
