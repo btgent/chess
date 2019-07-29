@@ -18,6 +18,8 @@ TextDisplay::TextDisplay(int n) : boardSize(n) {
   }
 }
 
+TextDisplay::~TextDisplay() {}
+
 void TextDisplay::drawBoard(const Board & b) {
   for (auto temp : b.listPieces) {
     Colour c = temp->getColour();
