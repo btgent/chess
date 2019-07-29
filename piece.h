@@ -15,18 +15,18 @@ class Piece {
   Piece(Coord pos, Colour colour, Type type, bool firstMove=true);
   virtual ~Piece();
   
-  Coord getPos();
-  Colour getColour();
-  Type getType();
-  bool isFirstMove();
+  Coord getPos() const;
+  Colour getColour() const;
+  Type getType() const;
+  bool isFirstMove() const;
   void setPos(Coord);
 
-  virtual bool possibleMove(Coord dest) = 0;
-  virtual bool possibleMove(int r, int c) = 0;
-  virtual std::vector<Coord> requiredEmpty(Coord dest) = 0;
-  virtual std::vector<Coord> requiredEmpty(int r, int c) = 0;
-  virtual std::vector<Coord> requiredOccupied(Coord dest) = 0;
-  virtual std::vector<Coord> requiredOccupied(int r, int c) =0;
+  virtual bool possibleMove(Coord dest) const = 0;
+  virtual bool possibleMove(int r, int c) const = 0;
+  virtual std::vector<Coord> requiredEmpty(Coord dest) const = 0;
+  virtual std::vector<Coord> requiredEmpty(int r, int c) const = 0;
+  virtual std::vector<Coord> requiredOccupied(Coord dest) const = 0;
+  virtual std::vector<Coord> requiredOccupied(int r, int c) const = 0;
 };
 
 #endif
