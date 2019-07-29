@@ -4,8 +4,16 @@ Piece::Piece(Coord pos, Colour colour, Type type): pos{pos}, colour{colour}, typ
 
 Piece::~Piece() {}
 
-ColourPiece::getColour() {
+Colour Piece::getColour() {
   return colour;
+}
+
+Type Piece::getType() {
+  return type; 
+}
+
+Coord Piece::getPos() {
+  return pos; 
 }
 
 Piece::setPos(Coord Pos) {
