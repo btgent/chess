@@ -28,42 +28,42 @@ void TextDisplay::drawBoard(const Board & b) {
     switch(c) {
       case White :  
         if (temp->getType() == King) {
-          display[getPos().row-1][getPos().col-1] = 'K'; 
+          display[getPos().row][getPos().col] = 'K'; 
         }
         else if (temp->getType() == Queen) {
-          display[getPos().row-1][getPos().col-1] = 'Q'; 
+          display[getPos().row][getPos().col] = 'Q'; 
         }
         else if (temp->getType() == Bishop) {
-          display[getPos().row-1][getPos().col-1] = 'B'; 
+          display[getPos().row][getPos().col] = 'B'; 
         }
         else if (temp->getType() == Knight) {
-          display[getPos().row-1][getPos().col-1] = 'N'; 
+          display[getPos().row][getPos().col] = 'N'; 
         }
         else if (temp->getType() == Rook) {
-          display[getPos().row-1][getPos().col-1] = 'R'; 
+          display[getPos().row][getPos().col] = 'R'; 
         }
         else if (temp->getType() == Pawn) {
-          display[getPos().row-1][getPos().col-1] = 'P'; 
+          display[getPos().row][getPos().col] = 'P'; 
         }
         
       case Black :
         if (temp->getType() == King) {
-          display[getPos().row-1][getPos().col-1] = 'k'; 
+          display[getPos().row][getPos().col] = 'k'; 
         }
         else if (temp->getType() == Queen) {
-          display[getPos().row-1][getPos().col-1] = 'q'; 
+          display[getPos().row][getPos().col] = 'q'; 
         }
         else if (temp->getType() == Bishop) {
-          display[getPos().row-1][getPos().col-1] = 'b'; 
+          display[getPos().row][getPos().col] = 'b'; 
         }
         else if (temp->getType() == Knight) {
-          display[getPos().row-1][getPos().col-1] = 'n'; 
+          display[getPos().row][getPos().col] = 'n'; 
         }
         else if (temp->getType() == Rook) {
-          display[getPos().row-1][getPos().col-1] = 'r'; 
+          display[getPos().row][getPos().col] = 'r'; 
         }
         else if (temp->getType() == Pawn) {
-          display[getPos().row-1][getPos().col-1] = 'p'; 
+          display[getPos().row][getPos().col] = 'p'; 
         }
     }
   }
