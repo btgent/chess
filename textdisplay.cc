@@ -70,9 +70,12 @@ void TextDisplay::drawBoard(const Board & b) {
   
   for (int i = n - 1; i >= 0; i--) {
     vector<std::char> temp = display[i];
+    std::cout << i+1 << " ";
     for (auto c : temp) {
       std::cout << c; 
     }
     std::cout << std::endl;
   }
+  std::cout << std::endl;
+  std::cout << "   abcdefgh" << endl;
 }
