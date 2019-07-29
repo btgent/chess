@@ -5,13 +5,13 @@ Piece::Piece(Coord pos, Colour colour, Type type, bool firstMove)
 
 Piece::~Piece() {}
 
-Coord Piece::getPos() { return pos; }
+Coord Piece::getPos() const { return pos; }
 
-Colour Piece::getColour() { return colour; }
+Colour Piece::getColour() const { return colour; }
 
-Type Piece::getType() { return type; }
+Type Piece::getType() const { return type; }
 
-bool isFirstMove() { return firstMove; }
+bool isFirstMove() const { return firstMove; }
 
 Piece::setPos(Coord dest) {
   pos.row = dest.row;
