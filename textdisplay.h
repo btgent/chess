@@ -10,6 +10,7 @@ class TextDisplay {
   const int boardSize; 
  public:
   TextDisplay(int n);
+  ~TextDisplay();
   void drawBoard(const Board & b);
 };
 
