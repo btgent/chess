@@ -6,7 +6,7 @@
 class Pawn: public Piece {
  public:
   Pawn(Coord pos, Colour colour, bool firstMove=true);
-  Piece *clone();
+  Piece *clone() const override;
 
   bool possibleMove(Coord dest) const override;
   bool possibleMove(int r, int c) const override;
