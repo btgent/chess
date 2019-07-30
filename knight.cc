@@ -2,27 +2,43 @@
 #include <vector>
 using std::vector;
 
-Knight::Knight(Coord Pos, Colour colour, Type type = Knight): pos{Pos}, colour{colour}, type{type} {
-  type = Knight;
-  firstMove = true;
-}
+Knight::Knight(Coord Pos, Colour colour, bool firstMove)
+  : Piece{pos, colour, Type::Knight, firstMove} {}
 
-bool Knight::possibleMove(Coord Pos) {
-  if ((Pos.col == pos.col + 2) || (Pos.col == pos.col - 2)) {
-    if ((Pos.row == pos.row + 1) || (Pos.row == pos - 1)) return true;
+bool Knight::possibleMove(Coord dest) const {
+  if ((dest.col == pos.col + 2) || (dest.col == pos.col - 2)) {
+    if ((dest.row == pos.row + 1) || (dest.row == pos - 1)) return true;
   }
-  if ((Pos.col == pos.col + 1) || (Pos.col == pos.col - 1)) {
-    if ((Pos.row == pos.row + 2) || (Pos.row == pos - 2)) return true;
+  if ((dest.col == pos.col + 1) || (dest.col == pos.col - 1)) {
+    if ((dest.row == pos.row + 2) || (dest.row == pos - 2)) return true;
   }
   return false;
 }
+bool Knight::possibleMove(int r, int c) const {
+  return possibleMove(Coord{.row=r, .col=c});
+}
 
-vector<Coord> Knight::requiredEmpty(Coord Pos) {
+vector<Coord> Knight::requiredEmpty(Coord dest) const {
   vector<Coord> v;
-   if (possibleMove(Coord Pos)) {
-     v.push_back(Pos);
-     return v;
-   }
-  v.push_back(pos);
+  // as long as the move is possible, knight doesn't need to traverse any squares
+  if (!possibleMove(dest)) {
+    v.push_back(pos);
+  }
   return v;
+}
+vector<Coord> Knight::requiredEmpty(int r, int c) const {
+  return requiredEmpty(Coord{.row=r, .col=c});
+}
+
+vector<Coord> Knight::requiredOccupied(Coord dest) const {
+  vector<Coord> v;
+  // all standard pieces except pawn don't require an enemy piece to move
+  // in a certain way
+  if  (!possibleMove(dest)) {
+    v.push_back(pos);
+  }
+  return v;
+}
+vector<Coord> Knight::requiredOccupied(int r, int c) const {
+  return requiredOccupied(Coord{.row=r, .col=c});
 }
