@@ -10,7 +10,6 @@ int abs(int i)  {return (i>0) ? i : -i;}
 bool Bishop::possibleMove(Coord dest) const {
   if ((dest.row == pos.row) && (dest.col == pos.col)) return false;
   else if (abs(dest.row - pos.row) == abs(dest.col - pos.col)) return true;
-  else if (abs(dest.row - pos.row) == abs(pos.col - dest.col)) return true;
   return false;
 }
 bool Bishop::possibleMove(int r, int c) const {
