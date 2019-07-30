@@ -2,7 +2,6 @@
 #define __KNIGHT_H__
 
 #include "piece.h"
-#include "move.h"
 #include <vector>
 using std::vector;
 
