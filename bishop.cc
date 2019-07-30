@@ -4,6 +4,7 @@ using std::vector;
 
 Bishop::Bishop(Coord pos, Colour colour, bool firstMove)
   : Piece{pos, colour, Type::Bishop, firstMove} {}
+Piece *Bishop::clone() { return new Bishop(*this); }
 
 int abs(int i)  {return (i>0) ? i : -i;}
 
