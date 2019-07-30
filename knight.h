@@ -3,7 +3,6 @@
 
 #include "piece.h"
 #include <vector>
-using std::vector;
 
 class Knight: public Piece {
  public:
