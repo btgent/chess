@@ -2,7 +2,6 @@
 #define __QUEEN_H__
 #include "piece.h"
 #include <vector>
-using std::vector;
 
 class Queen: public Piece {
  public:
