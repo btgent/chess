@@ -1,16 +1,16 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "pastmove.h"
+#include "colour.h"
 #include "type.h"
+#include "pastmove.h"
 #include <vector>
 #include <memory>
 
+class Coord;
+class FutureMove;
 class Piece;
 class King;
-class FutureMove;
-class Colour;
-class Coord;
 
 // In the future, Board would be an abstract class,
 // this would be StdBoard class, and there would be
@@ -27,6 +27,8 @@ class Board {
   Piece *kingWhite;
   Piece *kingBlack;
   Colour turn;
+  Colour moveFirst;
+  bool setupMode;
   const int size;
 
   void forceMove(Coord, Coord);
@@ -35,32 +37,45 @@ class Board {
   int index(int, int);
   void nextColour();
   void prevColour();
-  void undo(Move &);
+  void undo(PastMove &);
   bool canMove(Piece &, Coord dest);
-  void move(Coord, Coord, Type, Colour);
+  void move(Coord, Coord, Type, Colour);  // non-setup mode only
 
  public:
-  Board(std::vector<std::unique_ptr<Piece>>&&, Colour, int size=8);
+  Board(bool setupMode=false, int size=8);
   Board(const Board &b);
   Board &operator=(const Board &b) = delete;
   ~Board();
 
+  // setup mode only
+  void place(Coord, Colour, Type);
+  void remove(Coord);
+  void changeStartTurn();
+  void exitSetup();
+
+  // non-setup mode only
   void undo();
   void move(FutureMove);
   void move(Coord, Coord, Type=Type::Queen);
   void move(int, int, int, int, Type=Type::Queen);
   bool check(Colour);
   bool checkmate(Colour);
+  vector<FutureMove> allMoves(Colour);
+  int numAllMoves(Colour);
+  
+  // Can be used at any time
   bool pieceAt(Coord);
   bool pieceAt(int, int);
   bool pieceAt(Coord, Colour);
   bool pieceAt(int, int, Colour);
   bool outOfBounds(Coord);
   bool outOfBounds(int, int);
-  vector<FutureMove> allMoves(Colour);
-  int numAllMoves(Colour);
   bool isPromo(Coord, Coord);
   bool isPromo(int, int, int, int);
+  int numPieces() const;
+  const Piece &getPiece(int i) const;
+  int numMoves() const;
+  const PastMove &getMove(int i) const;
   Colour getTurn() const;
   int getSize() const;
 };
