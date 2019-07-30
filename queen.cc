@@ -4,6 +4,7 @@ using std::vector;
 
 Queen::Queen(Coord pos, Colour colour, bool firstMove)
   : Piece{pos, colour, Type::Queen, firstMove} {}
+Piece *Queen::clone() { return new Queen(*this); }
 
 int abs(int i)  {return (i>0) ? i : -i;}
 

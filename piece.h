@@ -21,6 +21,7 @@ class Piece {
   Type getType() const;
   bool isFirstMove() const;
   void setPos(Coord);
+  Piece *clone() = 0;
 
   //  Returns whether a move to dest could be considered as a valid move
   // (excluding special moves like castling or a case where a pawn is allowed to

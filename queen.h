@@ -6,6 +6,7 @@
 class Queen: public Piece {
  public:
   Queen(Coord pos, Colour colour, bool firstMove=true);
+  Piece *clone();
   
   bool possibleMove(Coord dest) const override;
   bool possibleMove(int r, int c) const override;
