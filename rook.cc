@@ -2,7 +2,7 @@
 #include <vector>
 using std::vector;
 
-Rook::Rook(Coord Pos, Colour colour, bool firstMove)
+Rook::Rook(Coord pos, Colour colour, bool firstMove)
   : Piece{pos, colour, Type::Rook, firstMove} {}
 
 bool Rook::possibleMove(Coord dest) const {
