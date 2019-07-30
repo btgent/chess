@@ -1,7 +1,7 @@
 #ifndef TYPE_H
 #define TYPE_H
 
-enum Type {
+enum class Type {
   King, Queen, Rook, Bishop, Knight, Pawn
 };
 
