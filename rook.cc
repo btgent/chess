@@ -4,7 +4,7 @@ using std::vector;
 
 Rook::Rook(Coord pos, Colour colour, bool firstMove)
   : Piece{pos, colour, Type::Rook, firstMove} {}
-Piece *Rook::clone() { return new Rook(*this); }
+Piece *Rook::clone() const { return new Rook(*this); }
 
 bool Rook::possibleMove(Coord dest) const {
   if ((dest.row == pos.row) && (dest.col == pos.col)) return false;
