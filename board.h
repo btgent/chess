@@ -12,6 +12,9 @@ class FutureMove;
 class Piece;
 class King;
 
+// Board methods can throw SetupException, PieceException, MoveException,
+// or UnexpectedException (which are all std::runtime_error)
+
 // In the future, Board would be an abstract class,
 // this would be StdBoard class, and there would be
 // ExtraBoard class with additional functionality
@@ -48,9 +51,9 @@ class Board {
   ~Board();
 
   // setup mode only
-  void place(Coord, Colour, Type);
+  void place(Coord, Colour, Type, bool firstMove=true);
   void remove(Coord);
-  void changeStartTurn();
+  void changeStartTurn(Colour);
   void exitSetup();
 
   // non-setup mode only
