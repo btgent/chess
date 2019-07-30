@@ -2,7 +2,7 @@
 #include <vector>
 using std::vector;
 
-Bishop::Bishop(Coord Pos, Colour colour, bool firstMove)
+Bishop::Bishop(Coord pos, Colour colour, bool firstMove)
   : Piece{pos, colour, Type::Bishop, firstMove} {}
 
 int abs(int i)  {return (i>0) ? i : -i;}
