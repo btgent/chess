@@ -4,6 +4,7 @@ using std::vector;
 
 Knight::Knight(Coord pos, Colour colour, bool firstMove)
   : Piece{pos, colour, Type::Knight, firstMove} {}
+Piece *Knight::clone() { return new Knight(*this); }
 
 bool Knight::possibleMove(Coord dest) const {
   if ((dest.col == pos.col + 2) || (dest.col == pos.col - 2)) {
