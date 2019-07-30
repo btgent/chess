@@ -2,7 +2,7 @@
 #include <vector>
 using std::vector;
 
-Queen::Queen(Coord Pos, Colour colour, bool firstMove)
+Queen::Queen(Coord pos, Colour colour, bool firstMove)
   : Piece{pos, colour, Type::Queen, firstMove} {}
 
 int abs(int i)  {return (i>0) ? i : -i;}
