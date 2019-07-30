@@ -3,13 +3,17 @@
 #define __BISHOP_H__
 #include "piece.h"
 #include <vector>
-using std::vector;
 
 class Bishop: public Piece {
  public:
-  Bishop(Coord pos, Colour colour, Type type = Bishop);
-  bool possibleMove(Coord Pos);
-  vector<Coord> requiredEmpty(Coord Pos);
+  Bishop(Coord pos, Colour colour, bool firstMove=true);
+  
+  bool possibleMove(Coord dest) const override;
+  bool possibleMove(int r, int c) const override;
+  std::vector<Coord> requiredEmpty(Coord dest) const override;
+  std::vector<Coord> requiredEmpty(int r, int c) const override;
+  std::vector<Coord> requiredOccupied(Coord dest) const override;
+  std::vector<Coord> requiredOccupied(int r, int c) const override;
 };
 
 #endif
