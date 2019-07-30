@@ -11,9 +11,9 @@ Colour Piece::getColour() const { return colour; }
 
 Type Piece::getType() const { return type; }
 
-bool isFirstMove() const { return firstMove; }
+bool Piece::isFirstMove() const { return firstMove; }
 
-Piece::setPos(Coord dest) {
+void Piece::setPos(Coord dest) {
   pos.row = dest.row;
   pos.col = dest.col;
 }
