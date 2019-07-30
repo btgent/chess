@@ -2,7 +2,7 @@
 #include <vector>
 using std::vector;
 
-King::King(Coord Pos, Colour colour, bool firstMove)
+King::King(Coord pos, Colour colour, bool firstMove)
   : Piece{pos, colour, Type::King, firstMove} {}
 
 int abs(int i)  {return (i>0) ? i : -i;}
