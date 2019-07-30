@@ -8,9 +8,14 @@ using std::vector;
 
 class Knight: public Piece {
  public:
-  Knight(Coord pos, Colour colour, Type type = Knight);
-  bool possibleMove(Coord Pos);
-  vector<Coord> requiredEmpty(Coord Pos);
+  Knight(Coord pos, Colour colour, bool firstMove=true);
+  
+  bool possibleMove(Coord dest) const override;
+  bool possibleMove(int r, int c) const override;
+  std::vector<Coord> requiredEmpty(Coord dest) const override;
+  std::vector<Coord> requiredEmpty(int r, int c) const override;
+  std::vector<Coord> requiredOccupied(Coord dest) const override;
+  std::vector<Coord> requiredOccupied(int r, int c) const override;
 };
 
 #endif
