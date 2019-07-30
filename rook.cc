@@ -2,52 +2,68 @@
 #include <vector>
 using std::vector;
 
-Rook::Rook(Coord Pos, Colour colour, Type type = Rock): pos{Pos}, colour{colour}, type{type} {
-  type = Rock;
-  firstMove = true;
-}
+Rook::Rook(Coord Pos, Colour colour, bool firstMove)
+  : Piece{pos, colour, Type::Bishop, firstMove} {}
 
-bool Rook::possibleMove(Coord Pos) {
-  if ((Pos.row == pos.row) && (Pos.col == pos.col)) return false;
-  else if ((pos.row == Pos.row) || (pos.col == Pos.col)) return true;
+bool Rook::possibleMove(Coord dest) const {
+  if ((dest.row == pos.row) && (dest.col == pos.col)) return false;
+  else if ((dest.row == pos.row) || (dest.col == pos.col)) return true;
   else return false;
-  }
+}
+bool Rook::possibleMove(int r, int c) const {
+  return possibleMove(Coord{.row=r, .col=c});
 }
 
-vector<Coord> Rook::requiredEmpty(Coord Pos) {
+vector<Coord> Rook::requiredEmpty(Coord dest) const {
   vector<Coord> v;
-  if (possibleMove(Pos)) {
-    if (pos.row == Pos.row) {
-      if (pos.col < Pos.col) {
-        for (i = pos.col + 1; i <= Pos.col; i++) {
-          Coord move {pos.row, i};
-          v.push_back(move);
-        }
-      }
-      else {
-        for (i = pos.col - 1; i >= Pos.col; i--) {
-          Coord move {pos.row, i};
-          v.push_back(move);
-        }
-      }
-    }
-    
-    else {
-      if (pos.row < Pos.row) {
-        for (i = pos.row + 1; i <= Pos.row; i++) {
-          Coord move {i, pos.col};
-          v.push_back(move);
-        }
-      }
-      else {
-        for (i = pos.row - 1; i >= Pos.row; i--) {
-          Coord move {i, pos.col};
-          v.push_back(move);
-        }
-      }
-    }
+  if (!possibleMove(dest)) {
+    v.push_back(pos);
     return v;
   }
-  v.push_back(pos);
+  if (pos.row == dest.row) {
+    if (pos.col < dest.col) {
+      // E
+      for (i = pos.col + 1; i < dest.col; i++) {
+        Coord move {pos.row, i};
+        v.push_back(move);
+      }
+    } else {
+      // W
+      for (i = pos.col - 1; i > dest.col; i--) {
+        Coord move {pos.row, i};
+        v.push_back(move);
+      }
+    }
+  } else {
+    if (pos.row < dest.row) {
+      // N
+      for (i = pos.row + 1; i < dest.row; i++) {
+        Coord move {i, pos.col};
+        v.push_back(move);
+      }
+    } else {
+      // S
+      for (i = pos.row - 1; i > dest.row; i--) {
+        Coord move {i, pos.col};
+        v.push_back(move);
+      }
+    }
+  }
   return v;
+}
+vector<Coord> Rook::requiredEmpty(int r, int c) const {
+  return requiredEmpty(Coord{.row=r, .col=c});
+}
+
+vector<Coord> Rook::requiredOccupied(Coord dest) const {
+  vector<Coord> v;
+  // all standard pieces except pawn don't require an enemy piece to move
+  // in a certain way
+  if  (!possibleMove(dest)) {
+    v.push_back(pos);
+  }
+  return v;
+}
+vector<Coord> Rook::requiredOccupied(int r, int c) const {
+  return requiredOccupied(Coord{.row=r, .col=c});
 }
