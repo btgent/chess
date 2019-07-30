@@ -2,7 +2,7 @@
 #include <vector>
 using std::vector;
 
-Knight::Knight(Coord Pos, Colour colour, bool firstMove)
+Knight::Knight(Coord pos, Colour colour, bool firstMove)
   : Piece{pos, colour, Type::Knight, firstMove} {}
 
 bool Knight::possibleMove(Coord dest) const {
