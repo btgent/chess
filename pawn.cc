@@ -2,7 +2,7 @@
 #include <vector>
 using std::vector;
 
-Pawn::Pawn(Coord Pos, Colour colour, bool firstMove)
+Pawn::Pawn(Coord pos, Colour colour, bool firstMove)
   : Piece{pos, colour, Type::Pawn, firstMove} {}
 
 bool Pawn::possibleMove(Coord dest) const {
