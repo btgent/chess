@@ -23,13 +23,13 @@ vector<Coord> Rook::requiredEmpty(Coord dest) const {
   if (pos.row == dest.row) {
     if (pos.col < dest.col) {
       // E
-      for (i = pos.col + 1; i < dest.col; i++) {
+      for (int i = pos.col + 1; i < dest.col; i++) {
         Coord move {pos.row, i};
         v.push_back(move);
       }
     } else {
       // W
-      for (i = pos.col - 1; i > dest.col; i--) {
+      for (int i = pos.col - 1; i > dest.col; i--) {
         Coord move {pos.row, i};
         v.push_back(move);
       }
@@ -37,13 +37,13 @@ vector<Coord> Rook::requiredEmpty(Coord dest) const {
   } else {
     if (pos.row < dest.row) {
       // N
-      for (i = pos.row + 1; i < dest.row; i++) {
+      for (int i = pos.row + 1; i < dest.row; i++) {
         Coord move {i, pos.col};
         v.push_back(move);
       }
     } else {
       // S
-      for (i = pos.row - 1; i > dest.row; i--) {
+      for (int i = pos.row - 1; i > dest.row; i--) {
         Coord move {i, pos.col};
         v.push_back(move);
       }
