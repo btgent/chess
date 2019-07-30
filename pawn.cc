@@ -5,6 +5,8 @@ using std::vector;
 Pawn::Pawn(Coord pos, Colour colour, bool firstMove)
   : Piece{pos, colour, Type::Pawn, firstMove} {}
 
+Piece *Pawn::clone() { return new Pawn(*this); }
+
 bool Pawn::possibleMove(Coord dest) const {
   switch(colour) {
     case Colour::White :
