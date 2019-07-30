@@ -3,7 +3,7 @@
 using std::vector;
 
 Rook::Rook(Coord Pos, Colour colour, bool firstMove)
-  : Piece{pos, colour, Type::Bishop, firstMove} {}
+  : Piece{pos, colour, Type::Rook, firstMove} {}
 
 bool Rook::possibleMove(Coord dest) const {
   if ((dest.row == pos.row) && (dest.col == pos.col)) return false;
