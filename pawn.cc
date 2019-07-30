@@ -3,7 +3,7 @@
 using std::vector;
 
 Pawn::Pawn(Coord Pos, Colour colour, bool firstMove)
-  : Piece{pos, Type::Pawn, colour, firstMove} {}
+  : Piece{pos, colour, Type::Pawn, firstMove} {}
 
 bool Pawn::possibleMove(Coord dest) const {
   switch(colour) {
