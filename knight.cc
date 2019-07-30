@@ -7,10 +7,10 @@ Knight::Knight(Coord Pos, Colour colour, bool firstMove)
 
 bool Knight::possibleMove(Coord dest) const {
   if ((dest.col == pos.col + 2) || (dest.col == pos.col - 2)) {
-    if ((dest.row == pos.row + 1) || (dest.row == pos - 1)) return true;
+    if ((dest.row == pos.row + 1) || (dest.row == pos.row - 1)) return true;
   }
   if ((dest.col == pos.col + 1) || (dest.col == pos.col - 1)) {
-    if ((dest.row == pos.row + 2) || (dest.row == pos - 2)) return true;
+    if ((dest.row == pos.row + 2) || (dest.row == pos.row - 2)) return true;
   }
   return false;
 }
