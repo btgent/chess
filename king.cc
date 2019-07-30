@@ -4,7 +4,7 @@ using std::vector;
 
 King::King(Coord pos, Colour colour, bool firstMove)
   : Piece{pos, colour, Type::King, firstMove} {}
-Piece *King::clone() { return new King(*this); }
+Piece *King::clone() const { return new King(*this); }
 
 int abs(int i)  {return (i>0) ? i : -i;}
 
