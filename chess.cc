@@ -113,7 +113,10 @@ int main() {
 			gd->drawBoard(*bp);
 			continue;
 		} //setup
-		if (bp.get() == nullptr) continue;
+		if (bp.get() == nullptr) {
+      cerr << "no game in play right now" << endl;
+      continue;
+    }
 		if (str == "+") {
 			char p, c; int i;
 			if (!(ss >> p >> c >> i)) continue;
@@ -174,10 +177,6 @@ int main() {
       continue;
 		} // done
 		else if (str == "move") {
-			bp->check(Colour::Black);
-			cout << "asdfasdfSD" << endl;
-			bp->checkmate(Colour::Black);
-			cout << "sd4gtgds" << endl;
 			char c1, c2, p;
 			int i1, i2;
 			if (!(ss >> c1 >> i1 >> c2 >> i2)) continue;
@@ -204,8 +203,11 @@ int main() {
 					switch (bp->getTurn()) {
 					case Colour::White:
 						scoreboard.blackAdd();
+            cout << "Black wins this round" << endl;
+            break;
 					case Colour::Black:
 						scoreboard.whiteAdd();
+            cout << "White wins this round" << endl;
 					}
 					gameInPlay = false;
 					bp.reset(nullptr);
@@ -221,17 +223,31 @@ int main() {
 			}
 			continue;
 		}  //move
+		else if (str == "undo") {
+			try {
+				bp->undo();
+			}
+			catch (const runtime_error &r) {
+				cerr << r.what() << endl;
+			}
+			td->drawBoard(*bp);
+			gd->drawBoard(*bp);
+			continue;
+		}  //move
 		else if (str == "resign") {
 			if (!gameInPlay) {
-				cout << "game hasn't even started yet!";
+				cerr << "game hasn't even started yet!";
+        continue;
 			}
 			try {
 				switch (bp->getTurn()) {
 					case Colour::White:
 						scoreboard.blackAdd();
+            cout << "Black wins this round" << endl;
 						break;
 					case Colour::Black:
 						scoreboard.whiteAdd();
+            cout << "White wins this round" << endl;
 						break;
 				}
 			}

@@ -16,4 +16,5 @@ bool Piece::isFirstMove() const { return firstMove; }
 void Piece::setPos(Coord dest) {
   pos.row = dest.row;
   pos.col = dest.col;
+  firstMove = false;
 }

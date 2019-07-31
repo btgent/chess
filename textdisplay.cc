@@ -11,6 +11,7 @@ TextDisplay::TextDisplay(int n) : boardSize(n) {}
 TextDisplay::~TextDisplay() {}
 
 void TextDisplay::drawBoard(const Board & b) {
+  display.clear();
   int n = b.getSize();
   for (int i = 0; i < n; i++) {
     vector<char> temp;

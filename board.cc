@@ -59,7 +59,7 @@ int Board::index(Coord loc) const {
   oss << "PieceException: Piece does not exist at (" << loc.row << ", "
     << loc.col << ")";
   throw PieceException{oss.str()};
-  return -1;
+  return 0;
 }
 int Board::index(int r, int c) const {
   return index(Coord{.row=r, .col=c});
@@ -100,8 +100,10 @@ void Board::undo(PastMove &m) {
   }
   // undo the move
   listPieces[i]->setPos(m.source);
-  // replace the capture
-  listPieces.emplace_back(std::move(m.capture));
+  // replace the capture (if there is one)
+  if (m.capture.get() != nullptr) {
+    listPieces.emplace_back(std::move(m.capture));
+  }
 }
 
 // see if Piece can move to Coord ( used by check(...), move(...) )
@@ -126,15 +128,19 @@ bool Board::canMove(Piece &p, Coord dest) {
       if (pieceAt(left_enpassant)
         && !pieceAt(left_enpassant, p.getColour())) {
         Piece &c = *listPieces[index(left_enpassant)];
-        if (c.getType() == Type::Pawn && stackMove.back().dest == c.getPos()
-          && stackMove.back().source.row == c.getPos().row+2) return true;
+        if (c.getType() == Type::Pawn && !stackMove.empty() 
+          && stackMove.back().dest == c.getPos()
+          && stackMove.back().source.row == c.getPos().row+2)
+          return true;
       }
       // Check for right_enpassant
       if (pieceAt(right_enpassant)
         && !pieceAt(right_enpassant, p.getColour())) {
         Piece &c = *listPieces[index(right_enpassant)];
-        if (c.getType() == Type::Pawn && stackMove.back().dest == c.getPos()
-          && stackMove.back().source.row == c.getPos().row+2) return true;
+        if (c.getType() == Type::Pawn && !stackMove.empty()
+          && stackMove.back().dest == c.getPos()
+          && stackMove.back().source.row == c.getPos().row+2)
+          return true;
       }
       break;
     case Colour::Black :
@@ -146,20 +152,24 @@ bool Board::canMove(Piece &p, Coord dest) {
       if (pieceAt(left_enpassant)
         && !pieceAt(left_enpassant, p.getColour())) {
         Piece &c = *listPieces[index(left_enpassant)];
-        if (c.getType() == Type::Pawn && stackMove.back().dest == c.getPos()
-          && stackMove.back().source.row == c.getPos().row-2) return true;
+        if (c.getType() == Type::Pawn && !stackMove.empty()
+          && stackMove.back().dest == c.getPos()
+          && stackMove.back().source.row == c.getPos().row-2)
+          return true;
       }
       // Check for right_empassant
       if (pieceAt(right_enpassant)
         && !pieceAt(right_enpassant, p.getColour())) {
         Piece &c = *listPieces[index(right_enpassant)];
-        if (c.getType() == Type::Pawn && stackMove.back().dest == c.getPos()
-          && stackMove.back().source.row == c.getPos().row-2) return true;
+        if (c.getType() == Type::Pawn && !stackMove.empty()
+          && stackMove.back().dest == c.getPos()
+          && stackMove.back().source.row == c.getPos().row-2)
+          return true;
       }
     }
   }
   // (castle)
-  if (p.getType() == Type::King && p.isFirstMove() && !check(p.getColour())) {
+  if (p.getType() == Type::King && p.isFirstMove()) {
     // Check left castle
     if (dest.row == pCoord.row && dest.col == pCoord.col-2
       && pieceAt(pCoord.row, pCoord.col-4, p.getColour())) {
@@ -167,7 +177,8 @@ bool Board::canMove(Piece &p, Coord dest) {
       if (r.getType() == Type::Rook && r.isFirstMove()
         && !pieceAt(pCoord.row, pCoord.col-1)
         && !pieceAt(pCoord.row, pCoord.col-2)
-        && !pieceAt(pCoord.row, pCoord.col-3)) {
+        && !pieceAt(pCoord.row, pCoord.col-3)
+        && !check(p.getColour())) {
         forceMove(pCoord.row, pCoord.col, pCoord.row, pCoord.col-1);
         if (!check(p.getColour())) {
           undo();
@@ -182,7 +193,8 @@ bool Board::canMove(Piece &p, Coord dest) {
       Piece &r = *listPieces[index(pCoord.row, pCoord.col+3)];
       if (r.getType() == Type::Rook && r.isFirstMove()
         && !pieceAt(pCoord.row, pCoord.col+1)
-        && !pieceAt(pCoord.row, pCoord.col+2)) {
+        && !pieceAt(pCoord.row, pCoord.col+2)
+        && !check(p.getColour())) {
         forceMove(pCoord.row, pCoord.col, pCoord.row, pCoord.col+1);
         if (!check(p.getColour())) {
           undo();
@@ -253,7 +265,7 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
     if (pieceAt(source.row, source.col-1)) {
       Piece &c = *listPieces[index(source.row, source.col-1)];
       if (c.getType() == Type::Pawn && c.getColour() != p.getColour()
-        && stackMove.back().dest == c.getPos()
+        && !stackMove.empty() && stackMove.back().dest == c.getPos()
         && ( stackMove.back().source.row == c.getPos().row-2
         || stackMove.back().source.row == c.getPos().row+2 ) ) {
         left_enpassant=true;
@@ -263,7 +275,7 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
     if (pieceAt(source.row, source.col+1)) {
       Piece &c = *listPieces[index(source.row, source.col+1)];
       if (c.getType() == Type::Pawn && c.getColour() != p.getColour()
-        && stackMove.back().dest == c.getPos()
+        && !stackMove.empty() && stackMove.back().dest == c.getPos()
         && ( stackMove.back().source.row == c.getPos().row-2
         || stackMove.back().source.row == c.getPos().row+2 ) ) {
         right_enpassant=true;
@@ -282,6 +294,7 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
     }
   }
   
+  
   // Perform move and undo if king is left in check
   if (left_enpassant) {
     PastMove m{source, dest, p.getType()};
@@ -294,6 +307,7 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
     if (check(otherColour)) m.check=true;
     stackMove.emplace_back(std::move(m));
     if (check(p.getColour())) {
+      nextColour();
       undo();
       throw MoveException{"MoveException: move puts king in check"};
     }
@@ -308,6 +322,7 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
     if (check(otherColour)) m.check=true;
     stackMove.emplace_back(std::move(m));
     if (check(p.getColour())) {
+      nextColour();
       undo();
       throw MoveException{"MoveException: move puts king in check"};
     }
@@ -324,6 +339,7 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
     if (check(otherColour)) m.check=true;
     stackMove.emplace_back(std::move(m));
     if (check(p.getColour())) {
+      nextColour();
       undo();
       throw MoveException{"MoveException: move puts king in check"};
     }
@@ -340,6 +356,7 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
     if (check(otherColour)) m.check=true;
     stackMove.emplace_back(std::move(m));
     if (check(p.getColour())) {
+      nextColour();
       undo();
       throw MoveException{"MoveException: move puts king in check"};
     }
@@ -382,6 +399,7 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
       default :
         listPieces.emplace_back(make_unique<Queen>(dest, pColour, false));
         stackMove.emplace_back(std::move(m));
+        nextColour();
         undo();
         throw UnexpectedException{"UnexpectedException: code not given for "
         "requested promotion"};
@@ -394,6 +412,7 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
     // Put completed move on the stack and undo if king is in check
     stackMove.emplace_back(std::move(m));
     if (check(p.getColour())) {
+      nextColour();
       undo();
       throw MoveException{"MoveException: move puts king in check"};
     }
