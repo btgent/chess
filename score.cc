@@ -2,7 +2,7 @@
 #include "iostream"
 
 
-Score::Score(int ws, int bs) :whiteScore{ ws }, blackScore{ bs } {}
+Score::Score(float ws, float bs) :whiteScore{ ws }, blackScore{ bs } {}
 
 Score::~Score() {}
 
