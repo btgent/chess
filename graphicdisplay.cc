@@ -45,7 +45,7 @@ void GraphicDisplay::drawBoard(const Board & myb) {
 	}
 	int pnum = myb.numPieces();
 	for (int i = 0; i < pnum; ++i) {
-		const Piece thePiece = myb.getPiece(i);
+		const Piece &thePiece = myb.getPiece(i);
 		int px = thePiece.getPos().row;
 		int py = thePiece.getPos().col;
 		Colour c = thePiece.getColour();
@@ -61,7 +61,7 @@ void GraphicDisplay::drawBoard(const Board & myb) {
 				w.drawBigString(initx + px * side + mids, inity + py * side + mids, "K", Xwindow::Red); break;
 			}
 			else {
-				w.drawBigString(initx + px * side + mids, inity + py * side + mids, "K", XwindowRed::Blue); break;
+				w.drawBigString(initx + px * side + mids, inity + py * side + mids, "K", Xwindow::Blue); break;
 			}
 		case Type::Queen:
 			if (c == Colour::Black) {
