@@ -1,5 +1,5 @@
 #include "graphicdisplay.h"
-#include "Window.h"
+#include "window.h"
 #include "board.h"
 #include "piece.h"
 
