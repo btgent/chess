@@ -4,8 +4,8 @@
 struct Coord {
   int row, col;
   
-  bool operator==(const &Coord) const;
-  bool operator!=(const &Coord) const;
+  bool operator==(const Coord&) const;
+  bool operator!=(const Coord&) const;
 };
 
 #endif
