@@ -126,7 +126,6 @@ int main() {
 				bp->place(coord, colour, type);
 				td->drawBoard(*bp);
 				gd->drawBoard(*bp);
-				cin >> c;
 			}
 			catch (const string &s) {
 				cerr << s << endl;
@@ -134,7 +133,6 @@ int main() {
 			catch (const runtime_error &r) {
 				cerr << r.what() << endl;
 			}
-			cin >> c;
 			continue;
 		} // +
 		else if (str == "-") {
@@ -236,7 +234,7 @@ int main() {
 		}  //move
 		else if (str == "resign") {
 			if (!gameInPlay) {
-				cerr << "game hasn't even started yet!";
+				cerr << "game hasn't even started yet!" << endl;
         continue;
 			}
 			try {

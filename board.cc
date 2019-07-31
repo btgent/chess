@@ -348,7 +348,7 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
       throw MoveException{"MoveException: move puts king in check"};
     }
   } else if (right_castle) {
-    PastMove m{source, dest, p.getType()};
+    PastMove m{source, dest, p.getType(), false, p.isFirstMove()};
     p.setPos(dest);
     Coord rookSource{.row=source.row, .col=source.col+3};
     Coord rookDest{.row=source.row, .col=source.col+1};
