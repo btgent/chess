@@ -1,13 +1,15 @@
 #include "textdisplay.h"
 #include <iostream>
 #include <vector>
-using vector::std;
+
+using namespace std;
 
 TextDisplay::TextDisplay(int n) : boardSize(n) {}
 
 TextDisplay::~TextDisplay() {}
 
 void TextDisplay::drawBoard(const Board & b) {
+  int n = b.getSize();
   for (int i = 0; i < n; i++) {
     vector<char> temp;
     for (int j = 0; j < n; j++) {
