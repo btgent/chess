@@ -36,8 +36,8 @@ class Board {
 
   void forceMove(Coord, Coord);
   void forceMove(int, int, int, int);
-  int index(Coord);
-  int index(int, int);
+  int index(Coord) const;
+  int index(int, int) const;
   void nextColour();
   void prevColour();
   void undo(PastMove &);
@@ -63,18 +63,20 @@ class Board {
   void move(int, int, int, int, Type=Type::Queen);
   bool check(Colour);
   bool checkmate(Colour);
+  bool stalemate(Colour);
+  bool noMovesLeft(Colour);
   vector<FutureMove> allMoves(Colour);
   int numAllMoves(Colour);
   
   // Can be used at any time
-  bool pieceAt(Coord);
-  bool pieceAt(int, int);
-  bool pieceAt(Coord, Colour);
-  bool pieceAt(int, int, Colour);
-  bool outOfBounds(Coord);
-  bool outOfBounds(int, int);
-  bool isPromo(Coord, Coord);
-  bool isPromo(int, int, int, int);
+  bool pieceAt(Coord) const;
+  bool pieceAt(int, int) const;
+  bool pieceAt(Coord, Colour) const;
+  bool pieceAt(int, int, Colour) const;
+  bool outOfBounds(Coord) const;
+  bool outOfBounds(int, int) const;
+  bool isPromo(Coord, Coord) const;
+  bool isPromo(int, int, int, int) const;
   int numPieces() const;
   const Piece &getPiece(int i) const;
   int numMoves() const;
