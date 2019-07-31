@@ -65,7 +65,7 @@ class Board {
   bool checkmate(Colour);
   bool stalemate(Colour);
   bool noMovesLeft(Colour);
-  vector<FutureMove> allMoves(Colour);
+  std::vector<FutureMove> allMoves(Colour);
   int numAllMoves(Colour);
   
   // Can be used at any time
