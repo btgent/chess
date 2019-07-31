@@ -102,6 +102,7 @@ void Board::undo(PastMove &m) {
   }
   // undo the move
   listPieces[i]->setPos(m.source);
+  listPieces[i]->setFirstMove(m.firstMove);
   // replace the capture (if there is one)
   if (m.capture.get() != nullptr) {
     listPieces.emplace_back(std::move(m.capture));
@@ -349,8 +350,8 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
   } else if (right_castle) {
     PastMove m{source, dest, p.getType()};
     p.setPos(dest);
-    Coord rookSource{.row=source.row, .col=source.col-4};
-    Coord rookDest{.row=source.row, .col=source.col-1};
+    Coord rookSource{.row=source.row, .col=source.col+3};
+    Coord rookDest{.row=source.row, .col=source.col+1};
     int i = index(rookSource);
     m.additional = make_unique<PastMove>(rookSource, rookDest, Type::Rook,
       false, listPieces[i]->isFirstMove());
