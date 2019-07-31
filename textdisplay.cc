@@ -25,7 +25,8 @@ void TextDisplay::drawBoard(const Board & b) {
     display.push_back(temp);
   }
   
-  for (auto temp : b.listPieces) {
+  for (int i=0; i<b.numPieces(); ++i) {
+    Piece &temp = b.getPiece(i);
     Colour c = temp->getColour();
     switch(c) {
       case White :  
