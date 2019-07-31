@@ -33,43 +33,43 @@ void TextDisplay::drawBoard(const Board & b) {
     switch(c) {
       case Colour::White :  
         if (temp->getType() == Type::King) {
-          display[getPos().row][getPos().col] = 'K'; 
+          display[temp->getPos().row][temp->getPos().col] = 'K'; 
         }
         else if (temp->getType() == Type::Queen) {
-          display[getPos().row][getPos().col] = 'Q'; 
+          display[temp->getPos().row][temp->getPos().col] = 'Q'; 
         }
         else if (temp->getType() == Type::Bishop) {
-          display[getPos().row][getPos().col] = 'B'; 
+          display[temp->getPos().row][temp->getPos().col] = 'B'; 
         }
         else if (temp->getType() == Type::Knight) {
-          display[getPos().row][getPos().col] = 'N'; 
+          display[temp->getPos().row][temp->getPos().col] = 'N'; 
         }
         else if (temp->getType() == Type::Rook) {
-          display[getPos().row][getPos().col] = 'R'; 
+          display[temp->getPos().row][temp->getPos().col] = 'R'; 
         }
         else if (temp->getType() == Type::Pawn) {
-          display[getPos().row][getPos().col] = 'P'; 
+          display[temp->temp->getPos().row][temp->getPos().col] = 'P'; 
         }
         break;
         
       case Colour::Black :
         if (temp->getType() == Type::King) {
-          display[getPos().row][getPos().col] = 'k'; 
+          display[temp->getPos().row][temp->getPos().col] = 'k'; 
         }
         else if (temp->getType() == Type::Queen) {
-          display[getPos().row][getPos().col] = 'q'; 
+          display[temp->getPos().row][temp->getPos().col] = 'q'; 
         }
         else if (temp->getType() == Type::Bishop) {
-          display[getPos().row][getPos().col] = 'b'; 
+          display[temp->getPos().row][temp->getPos().col] = 'b'; 
         }
         else if (temp->getType() == Type::Knight) {
-          display[getPos().row][getPos().col] = 'n'; 
+          display[temp->getPos().row][temp->getPos().col] = 'n'; 
         }
         else if (temp->getType() == Type::Rook) {
-          display[getPos().row][getPos().col] = 'r'; 
+          display[temp->getPos().row][temp->getPos().col] = 'r'; 
         }
         else if (temp->getType() == Type::Pawn) {
-          display[getPos().row][getPos().col] = 'p'; 
+          display[temp->getPos().row][temp->getPos().col] = 'p'; 
         }
         break;
     }
