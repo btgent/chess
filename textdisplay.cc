@@ -26,7 +26,7 @@ void TextDisplay::drawBoard(const Board & b) {
   }
   
   for (int i=0; i<b.numPieces(); ++i) {
-    Piece &temp = b.getPiece(i);
+    const Piece *temp = &b.getPiece(i);
     Colour c = temp->getColour();
     switch(c) {
       case White :  
