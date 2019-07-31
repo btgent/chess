@@ -31,44 +31,44 @@ void TextDisplay::drawBoard(const Board & b) {
     const Piece *temp = &b.getPiece(i);
     Colour c = temp->getColour();
     switch(c) {
-      case White :  
-        if (temp->getType() == King) {
+      case Colour::White :  
+        if (temp->getType() == Type::King) {
           display[getPos().row][getPos().col] = 'K'; 
         }
-        else if (temp->getType() == Queen) {
+        else if (temp->getType() == Type::Queen) {
           display[getPos().row][getPos().col] = 'Q'; 
         }
-        else if (temp->getType() == Bishop) {
+        else if (temp->getType() == Type::Bishop) {
           display[getPos().row][getPos().col] = 'B'; 
         }
-        else if (temp->getType() == Knight) {
+        else if (temp->getType() == Type::Knight) {
           display[getPos().row][getPos().col] = 'N'; 
         }
-        else if (temp->getType() == Rook) {
+        else if (temp->getType() == Type::Rook) {
           display[getPos().row][getPos().col] = 'R'; 
         }
-        else if (temp->getType() == Pawn) {
+        else if (temp->getType() == Type::Pawn) {
           display[getPos().row][getPos().col] = 'P'; 
         }
         break;
         
-      case Black :
-        if (temp->getType() == King) {
+      case Colour::Black :
+        if (temp->getType() == Type::King) {
           display[getPos().row][getPos().col] = 'k'; 
         }
-        else if (temp->getType() == Queen) {
+        else if (temp->getType() == Type::Queen) {
           display[getPos().row][getPos().col] = 'q'; 
         }
-        else if (temp->getType() == Bishop) {
+        else if (temp->getType() == Type::Bishop) {
           display[getPos().row][getPos().col] = 'b'; 
         }
-        else if (temp->getType() == Knight) {
+        else if (temp->getType() == Type::Knight) {
           display[getPos().row][getPos().col] = 'n'; 
         }
-        else if (temp->getType() == Rook) {
+        else if (temp->getType() == Type::Rook) {
           display[getPos().row][getPos().col] = 'r'; 
         }
-        else if (temp->getType() == Pawn) {
+        else if (temp->getType() == Type::Pawn) {
           display[getPos().row][getPos().col] = 'p'; 
         }
         break;
