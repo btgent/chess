@@ -6,11 +6,11 @@ Queen::Queen(Coord pos, Colour colour, bool firstMove)
   : Piece{pos, colour, Type::Queen, firstMove} {}
 Piece *Queen::clone() const { return new Queen(*this); }
 
-int abs(int i)  {return (i>0) ? i : -i;}
+int intabs(int i)  {return (i>0) ? i : -i;}
 
 bool Queen::possibleMove(Coord dest) const {
   if ((dest.row == pos.row) && (dest.col == pos.col)) return false;
-  else if (abs(dest.row - pos.row) == abs(dest.col - pos.col)) return true;
+  else if (intabs(dest.row - pos.row) == intabs(dest.col - pos.col)) return true;
   else if ((pos.row == dest.row) || (pos.col == dest.col)) return true;
   return false;
 }
