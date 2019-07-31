@@ -8,6 +8,7 @@
 class MoveException : public std::runtime_error {
 public:
   MoveException(const char* m) : std::runtime_error(m) { }
+  MoveException(const std::string m) : std::runtime_error(m) { }
 };
 
 #endif
