@@ -21,10 +21,6 @@
 
 using namespace std;
 
-////////////////////////////////////////////////////////
-// Replace throw with something sensible
-////////////////////////////////////////////////////////
-
 // Forces piece at source to move to dest, without checking conditions
 // Changes whose turn it is (because every forced move gets undone anyways,
 // and undo() calls prevColour() )
