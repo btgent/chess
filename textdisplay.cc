@@ -1,6 +1,8 @@
 #include "textdisplay.h"
 #include <iostream>
 #include <vector>
+#incude "board.h"
+#include "piece.h"
 
 using namespace std;
 
