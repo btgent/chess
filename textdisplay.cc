@@ -48,7 +48,7 @@ void TextDisplay::drawBoard(const Board & b) {
           display[temp->getPos().row][temp->getPos().col] = 'R'; 
         }
         else if (temp->getType() == Type::Pawn) {
-          display[temp->temp->getPos().row][temp->getPos().col] = 'P'; 
+          display[temp->getPos().row][temp->getPos().col] = 'P'; 
         }
         break;
         
