@@ -9,6 +9,7 @@
 class UnexpectedException : public std::runtime_error {
 public:
   UnexpectedException(const char* m) : std::runtime_error(m) { }
+  UnexpectedException(const std::string m) : std::runtime_error(m) { }
 };
 
 #endif
