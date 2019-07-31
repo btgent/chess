@@ -34,13 +34,15 @@ void Board::forceMove(Coord source, Coord dest) {
       << source.col << ")";
     throw PieceException{oss.str()};
   }
-  stackMove.emplace_back(PastMove{source, dest, Type::Queen});
+  Piece &p = *listPieces[index(source)];
+  bool fm = p.isFirstMove();
+  stackMove.emplace_back(PastMove{source, dest, Type::Queen, false, fm});
   if (pieceAt(dest)) {
     int k = index(dest);
     stackMove.back().capture = std::move(listPieces[k]);
     listPieces.erase(listPieces.begin()+k);
   }
-  listPieces[index(source)]->setPos(dest);
+  p.setPos(dest);
   nextColour();
 }
 void Board::forceMove(int sr, int sc, int dr, int dc) {
@@ -297,7 +299,7 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
   
   // Perform move and undo if king is left in check
   if (left_enpassant) {
-    PastMove m{source, dest, p.getType()};
+    PastMove m{source, dest, p.getType(), false, p.isFirstMove()};
     p.setPos(dest);
     int i = index(source.row, source.col-1);
     m.capture = std::move(listPieces[i]);
@@ -312,7 +314,7 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
       throw MoveException{"MoveException: move puts king in check"};
     }
   } else if (right_enpassant) {
-    PastMove m{source, dest, p.getType()};
+    PastMove m{source, dest, p.getType(), false, p.isFirstMove()};
     p.setPos(dest);
     int i = index(source.row, source.col+1);
     m.capture = std::move(listPieces[i]);
@@ -327,13 +329,14 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
       throw MoveException{"MoveException: move puts king in check"};
     }
   } else if (left_castle) {
-    PastMove m{source, dest, p.getType()};
+    PastMove m{source, dest, p.getType(), false, p.isFirstMove()};
     p.setPos(dest);
     Coord rookSource{.row=source.row, .col=source.col-4};
     Coord rookDest{.row=source.row, .col=source.col-1};
     int i = index(rookSource);
+    m.additional = make_unique<PastMove>(rookSource, rookDest, Type::Rook,
+      false, listPieces[i]->isFirstMove());
     listPieces[i]->setPos(rookDest);
-    m.additional = make_unique<PastMove>(rookSource, rookDest, Type::Rook);
     Colour otherColour
       = (p.getColour()==Colour::White) ? Colour::Black : Colour::White;
     if (check(otherColour)) m.check=true;
@@ -349,8 +352,9 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
     Coord rookSource{.row=source.row, .col=source.col-4};
     Coord rookDest{.row=source.row, .col=source.col-1};
     int i = index(rookSource);
+    m.additional = make_unique<PastMove>(rookSource, rookDest, Type::Rook,
+      false, listPieces[i]->isFirstMove());
     listPieces[i]->setPos(rookDest);
-    m.additional = make_unique<PastMove>(rookSource, rookDest, Type::Rook);
     Colour otherColour
       = (p.getColour()==Colour::White) ? Colour::Black : Colour::White;
     if (check(otherColour)) m.check=true;
@@ -361,7 +365,7 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
       throw MoveException{"MoveException: move puts king in check"};
     }
   } else {  //general move
-    PastMove m{source, dest, p.getType()};
+    PastMove m{source, dest, p.getType(), false, p.isFirstMove()};
     bool isapromo = isPromo(source, dest);
     // Change this and the switch statement below if you want a type to be
     // available for promotion (from pawn)

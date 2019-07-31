@@ -18,3 +18,7 @@ void Piece::setPos(Coord dest) {
   pos.col = dest.col;
   firstMove = false;
 }
+
+void Piece::setFirstMove(bool b) {
+  firstMove = b;
+}

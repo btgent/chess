@@ -21,6 +21,7 @@ class Piece {
   Type getType() const;
   bool isFirstMove() const;
   void setPos(Coord);
+  void setFirstMove(bool);
   virtual Piece *clone() const = 0;
 
   //  Returns whether a move to dest could be considered as a valid move
