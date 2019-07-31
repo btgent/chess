@@ -123,13 +123,15 @@ int main() {
 				bp->place(coord, colour, type);
 				td->drawBoard(*bp);
 				gd->drawBoard(*bp);
+				cin >> c;
 			}
 			catch (const string &s) {
-				cerr << s;
+				cerr << s << endl;
 			}
 			catch (const runtime_error &r) {
-				cerr << r.what();
+				cerr << r.what() << endl;
 			}
+			cin >> c;
 			continue;
 		} // +
 		else if (str == "-") {
@@ -142,7 +144,7 @@ int main() {
 				gd->drawBoard(*bp);
 			}
 			catch (const runtime_error &r) {
-				cerr << r.what();
+				cerr << r.what() << endl;
 			}
 			continue;
 		} // -
@@ -157,7 +159,7 @@ int main() {
 				}
 			}
 			catch (const runtime_error &r) {
-				cerr << r.what();
+				cerr << r.what() << endl;
 			}
 			continue;
 		} // =
@@ -167,10 +169,15 @@ int main() {
 				gameInPlay = true;
 			}
 			catch (const runtime_error &r) {
-				cerr << r.what();
+				cerr << r.what() << endl;
 			}
+      continue;
 		} // done
 		else if (str == "move") {
+			bp->check(Colour::Black);
+			cout << "asdfasdfSD" << endl;
+			bp->checkmate(Colour::Black);
+			cout << "sd4gtgds" << endl;
 			char c1, c2, p;
 			int i1, i2;
 			if (!(ss >> c1 >> i1 >> c2 >> i2)) continue;
@@ -179,7 +186,7 @@ int main() {
 					bp->move(i1 - 1, c1 - 'a', i2 - 1, c2 - 'a', Type::Queen);
 				}
 				catch (const runtime_error &r) {
-					cerr << r.what();
+					cerr << r.what() << endl;
 				}
 			}
 			else {
@@ -187,7 +194,7 @@ int main() {
 					bp->move(i1 - 1, c1 - 'a', i2 - 1, c2 - 'a');
 				}
 				catch (const runtime_error &r) {
-					cerr << r.what();
+					cerr << r.what() << endl;
 				}
 			}
 			td->drawBoard(*bp);
@@ -210,7 +217,7 @@ int main() {
 				}
 			}
 			catch (const runtime_error &r) {
-				cerr << r.what();
+				cerr << r.what() << endl;
 			}
 			continue;
 		}  //move
@@ -229,7 +236,7 @@ int main() {
 				}
 			}
 			catch (const runtime_error &r) {
-				cerr << r.what();
+				cerr << r.what() << endl;
 			}
 			bp.reset(nullptr);
 			gameInPlay = false;

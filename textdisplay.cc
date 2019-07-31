@@ -83,6 +83,5 @@ void TextDisplay::drawBoard(const Board & b) {
     }
     cout << std::endl;
   }
-  std::cout << std::endl;
-  std::cout << "   abcdefgh" << endl;
+  std::cout << "  abcdefgh" << endl;
 }

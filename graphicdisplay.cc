@@ -8,7 +8,6 @@ GraphicDisplay::GraphicDisplay() {
 
 //left top corner start with (50,50) and each rectangle is 50*50
 void GraphicDisplay::drawBoard(const Board & myb) {
-	Xwindow w;
 	int initx = 50;
 	int inity = 50;
 
@@ -46,8 +45,8 @@ void GraphicDisplay::drawBoard(const Board & myb) {
 	int pnum = myb.numPieces();
 	for (int i = 0; i < pnum; ++i) {
 		const Piece &thePiece = myb.getPiece(i);
-		int px = thePiece.getPos().row;
-		int py = thePiece.getPos().col;
+		int px = thePiece.getPos().col;
+		int py = myb.getSize() - 1 - thePiece.getPos().row;
 		Colour c = thePiece.getColour();
 		//	switch (c) {
 		//	case Black: Xwindow::Pcol = Xwindow::Red;

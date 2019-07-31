@@ -578,9 +578,13 @@ void Board::exitSetup() {
     }
   }
 
+  // Need to set setupMode to false to use check(...)
+  setupMode = false;
+
   // check for kings already in check
   if (check(Colour::White) || check(Colour::Black)) {
     kingWhite = kingBlack = nullptr;
+    setupMode = true;
     throw SetupException{"SetupException: Cannot exit setup mode: "
     "found kings in check"};
   }
