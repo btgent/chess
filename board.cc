@@ -18,6 +18,7 @@
 #include <vector>
 #include <memory>
 #include <utility>
+#include <sstream>
 
 using namespace std;
 
@@ -28,8 +29,10 @@ using namespace std;
 void Board::forceMove(Coord source, Coord dest) {
   // Check if piece exists at source before moving
   if (!pieceAt(source)) {
-    throw PieceException{"PieceException: Piece does not exist at ("
-    + source.row + ", " + source.col + ")"};
+    ostringstream oss;
+    oss << "PieceException: Piece does not exist at (" << source.row << ", "
+      << source.col << ")";
+    throw PieceException{oss.str()};
   }
   stackMove.emplace_back(PastMove{source, dest, Type::Queen});
   if (pieceAt(dest)) {
@@ -52,8 +55,11 @@ int Board::index(Coord loc) const {
     if (p->getPos() == loc) return i;
     ++i;
   }
-  throw PieceException{"PieceException: Piece does not exist at ("
-    + loc.row + ", " + loc.col + ")"};
+  ostringstream oss;
+  oss << "PieceException: Piece does not exist at (" << loc.row << ", "
+    << loc.col << ")";
+  throw PieceException{oss.str()};
+  return -1;
 }
 int Board::index(int r, int c) const {
   return index(Coord{.row=r, .col=c});
@@ -218,17 +224,23 @@ void Board::move(Coord source, Coord dest, Type promo, Colour colour) {
       "move(Coord, Coord, Type, Colour) while in setup mode"};
   }
   if (!pieceAt(source)) {
-    throw PieceException{"PieceException: Piece does not exist at ("
-      + source.row + ", " + source.col + ")"};
+    ostringstream oss;
+    oss << "PieceException: Piece does not exist at (" << source.row
+      << ", " << source.col << ")";
+    throw PieceException{oss.str()};
   }
   Piece &p = *listPieces[index(source)];
   if (p.getColour() != colour) {
-    throw PieceException{"PieceException: Piece is the wrong colour at ("
-      + source.row + ", " + source.col + ")"};
+    ostringstream oss;
+    oss << "PieceException: Piece is the wrong colour at (" << source.row
+      << ", " << source.col << ")";
+    throw PieceException{oss.str()};
   }
   if (!canMove(p, dest)) {
-    throw MoveException{"MoveException: piece cannot move from ("
-    + source.row + ", " source.col + ") to (" + dest.row + ", " + dest.col + ")"};
+    ostringstream oss;
+    oss << "MoveException: piece cannot move from (" << source.row
+      << ", " << source.col << ") to (" << dest.row << ", " << dest.col << ")";
+    throw MoveException{oss.str()};
   }
   
   // Determine if the move is a special move
@@ -469,8 +481,10 @@ void Board::place(Coord pCoord, Colour pColour, Type pType, bool firstMove) {
       "place(Coord, Colour, Type, bool firstMove=true) while in non-setup mode"};
   }
   if (outOfBounds(pCoord)) {
-    throw PieceException{"PieceException: Piece cannot be placed out of bounds: ("
-    + pCoord.row + ", " + pCoord.col + ")"};
+    ostringstream oss;
+    oss << "PieceException: Piece cannot be placed out of bounds: ("
+      << pCoord.row << ", " << pCoord.col << ")";
+    throw PieceException{oss.str()};
   }
   if (pieceAt(pCoord)) {
     listPieces.erase(listPieces.begin()+index(pCoord));
@@ -502,8 +516,10 @@ void Board::remove(Coord coord) {
       "remove(Coord) while in non-setup mode"};
   }
   if (!pieceAt(coord)) {
-    throw PieceException{"PieceException: Piece does not exist at ("
-      + coord.row + ", " + coord.col + ")"};
+    ostringstream oss;
+    oss << "PieceException: Piece does not exist at (" << coord.row
+      << ", " << coord.col << ")";
+    throw PieceException{oss.str()};
   }
   listPieces.erase(listPieces.begin()+index(coord));
 }
@@ -649,7 +665,7 @@ bool Board::stalemate(Colour c) {
   return !check(c) && noMovesLeft(c);
 }
 
-bool Board::noMovesLeft(Colour c) {
+bool Board::noMovesLeft(Colour colour) {
   if (setupMode) {
     throw SetupException{"SetupException: Can't use "
       "allMoves(Colour) while in setup mode"};
@@ -706,7 +722,7 @@ vector<FutureMove> Board::allMoves(Colour colour) {
   return f;
 }
 
-int Board::numAllMoves(Colour c) {
+int Board::numAllMoves(Colour colour) {
   if (setupMode) {
     throw SetupException{"SetupException: Can't use "
       "numAllMoves(Colour) while in setup mode"};
@@ -780,9 +796,10 @@ int Board::numPieces() const {
   return listPieces.size();
 }
 const Piece &Board::getPiece(int i) const {
-  if (i<0 || listPieces.size()<=i) {
-    throw PieceException{"PieceException: piece doesn't exist at index "
-    + i + "in listPieces"};
+  if (i<0 || static_cast<int>(listPieces.size())<=i) {
+    ostringstream oss;
+    oss << "PieceException: piece doesn't exist at index " << i << "in listPieces";
+    throw PieceException{oss.str()};
   }
   return *listPieces[i].get();
 }
@@ -790,9 +807,10 @@ int Board::numMoves() const {
   return stackMove.size();
 }
 const PastMove &Board::getMove(int i) const {
-  if (i<0 || stackMove.size()<=i) {
-    throw MoveException{"MoveException: move doesn't exist at index "
-    + i + "in stackMove"};
+  if (i<0 || static_cast<int>(stackMove.size())<=i) {
+    ostringstream oss;
+    oss << "MoveException: move doesn't exist at index " << i << "in stackMove";
+    throw MoveException{oss.str()};
   }
   return stackMove[i];
 }
