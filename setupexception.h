@@ -10,6 +10,7 @@
 class SetupException : public std::runtime_error {
 public:
   SetupException(const char* m) : std::runtime_error(m) { }
+  SetupException(const std::string m) : std::runtime_error(m) { }
 };
 
 #endif
